@@ -2,8 +2,8 @@
 
 # Biblioteca - VB.NET + MariaDB
 
-Materia: Programación con BD
-Paradigma trabajado: Programación Orientada a Eventos
+- Materia: **Programación con BD**
+- Paradigma trabajado: *Programación Orientada a Eventos*
 
 ## Requisitos
 
@@ -13,16 +13,16 @@ Paradigma trabajado: Programación Orientada a Eventos
 - MySqlConnector
 - Git
 
-## Base de datos
+## Documentación
 
-Ejecutar:
+Ver `../docs`
 
-database/Biblioteca.sql
-
-## Conexión
-
-Servidor: localhost
-Puerto: 3306
-Base: biblioteca
+## Base de Datos
+Ver `../database`
 
 ## Estado del proyecto
+
+- Clase 01: 
+	. Preparar entorno de desarrollo
+	. Primer proyecto
+	. Conexion a BD
