@@ -2,7 +2,7 @@
 
 # Biblioteca - VB.NET + MariaDB
 
-Materia: Programación CON bd
+Materia: Programación con BD
 Paradigma trabajado: Programación Orientada a Eventos
 
 ## Requisitos
