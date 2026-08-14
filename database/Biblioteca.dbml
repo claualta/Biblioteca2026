@@ -1,0 +1,103 @@
+// ============================================================
+// BASE DE DATOS: Biblioteca
+// Diagrama DBML para dbdiagram.io
+// Basado en la BD utilizada en el proyecto VB.NET + MariaDB
+// ============================================================
+
+Table editorial {
+  claveeditorial int [pk, increment]
+  nombre varchar(100) [not null]
+  direccion varchar(150)
+  telefono varchar(30)
+}
+
+Table autor {
+  claveautor int [pk, increment]
+  nombre varchar(120) [not null]
+}
+
+Table tema {
+  clavetema int [pk, increment]
+  nombre varchar(100) [not null]
+}
+
+Table libro {
+  clavelibro int [pk, increment]
+  titulo varchar(180) [not null]
+  idioma varchar(40)
+  formato varchar(40)
+  edicion int
+  claveeditorial int [not null]
+  portada longblob [note: 'Imagen de portada almacenada como BLOB']
+}
+
+Table ejemplar {
+  clavelibro int [not null]
+  numeroorden int [not null]
+  ubicacion varchar(80)
+
+  indexes {
+    (clavelibro, numeroorden) [pk]
+  }
+
+  Note: 'Cada registro representa un ejemplar físico. El stock de un libro se obtiene contando sus ejemplares.'
+}
+
+Table escrito_por {
+  clavelibro int [not null]
+  claveautor int [not null]
+
+  indexes {
+    (clavelibro, claveautor) [pk]
+  }
+
+  Note: 'Tabla intermedia para la relación muchos a muchos entre Libro y Autor.'
+}
+
+Table trata_sobre {
+  clavelibro int [not null]
+  clavetema int [not null]
+
+  indexes {
+    (clavelibro, clavetema) [pk]
+  }
+
+  Note: 'Tabla intermedia para la relación muchos a muchos entre Libro y Tema.'
+}
+
+Table rol {
+  idrol int [pk, increment]
+  nombre varchar(30) [not null, unique]
+}
+
+Table usuario {
+  idusuario int [pk, increment]
+  nombreusuario varchar(50) [not null, unique]
+  clavehash varchar(100) [not null, note: 'Hash PBKDF2 de la contraseña']
+  salt varchar(100) [not null, note: 'Salt utilizado para generar el hash']
+  nombrecompleto varchar(100) [not null]
+  idrol int [not null]
+  activo boolean [not null, default: true]
+}
+
+
+// ============================================================
+// RELACIONES
+// ============================================================
+
+// Una editorial puede publicar muchos libros.
+Ref: editorial.claveeditorial < libro.claveeditorial
+
+// Un libro puede tener muchos ejemplares físicos.
+Ref: libro.clavelibro < ejemplar.clavelibro [delete: cascade]
+
+// Relación N:M Libro - Autor.
+Ref: libro.clavelibro < escrito_por.clavelibro [delete: cascade]
+Ref: autor.claveautor < escrito_por.claveautor
+
+// Relación N:M Libro - Tema.
+Ref: libro.clavelibro < trata_sobre.clavelibro [delete: cascade]
+Ref: tema.clavetema < trata_sobre.clavetema
+
+// Cada usuario pertenece a un rol.
+Ref: rol.idrol < usuario.idrol
