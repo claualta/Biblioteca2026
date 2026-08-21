@@ -29,18 +29,20 @@ Partial Class frmPrincipal
         ' 
         ' btnProbarConexion
         ' 
-        btnProbarConexion.Location = New Point(278, 70)
+        btnProbarConexion.Location = New Point(318, 93)
+        btnProbarConexion.Margin = New Padding(3, 4, 3, 4)
         btnProbarConexion.Name = "btnProbarConexion"
-        btnProbarConexion.Size = New Size(164, 80)
+        btnProbarConexion.Size = New Size(187, 107)
         btnProbarConexion.TabIndex = 0
         btnProbarConexion.Text = "CONECTAR BD"
         btnProbarConexion.UseVisualStyleBackColor = True
         ' 
         ' btnCantLibros
         ' 
-        btnCantLibros.Location = New Point(278, 203)
+        btnCantLibros.Location = New Point(318, 271)
+        btnCantLibros.Margin = New Padding(3, 4, 3, 4)
         btnCantLibros.Name = "btnCantLibros"
-        btnCantLibros.Size = New Size(164, 80)
+        btnCantLibros.Size = New Size(187, 107)
         btnCantLibros.TabIndex = 1
         btnCantLibros.Text = "CANTIDAD LIBROS"
         btnCantLibros.UseVisualStyleBackColor = True
@@ -49,20 +51,21 @@ Partial Class frmPrincipal
         ' 
         lblCantLibros.AutoSize = True
         lblCantLibros.Font = New Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        lblCantLibros.Location = New Point(544, 126)
+        lblCantLibros.Location = New Point(671, 244)
         lblCantLibros.Name = "lblCantLibros"
-        lblCantLibros.Size = New Size(70, 25)
+        lblCantLibros.Size = New Size(88, 32)
         lblCantLibros.TabIndex = 2
         lblCantLibros.Text = "Label1"
         ' 
         ' frmPrincipal
         ' 
-        AutoScaleDimensions = New SizeF(7F, 15F)
+        AutoScaleDimensions = New SizeF(8F, 20F)
         AutoScaleMode = AutoScaleMode.Font
-        ClientSize = New Size(800, 450)
+        ClientSize = New Size(914, 600)
         Controls.Add(lblCantLibros)
         Controls.Add(btnCantLibros)
         Controls.Add(btnProbarConexion)
+        Margin = New Padding(3, 4, 3, 4)
         Name = "frmPrincipal"
         Text = "Principal"
         ResumeLayout(False)
