@@ -25,6 +25,7 @@ Partial Class frmPrincipal
         btnProbarConexion = New Button()
         btnCantLibros = New Button()
         lblCantLibros = New Label()
+        btnLibros = New Button()
         SuspendLayout()
         ' 
         ' btnProbarConexion
@@ -39,7 +40,7 @@ Partial Class frmPrincipal
         ' 
         ' btnCantLibros
         ' 
-        btnCantLibros.Location = New Point(318, 271)
+        btnCantLibros.Location = New Point(318, 244)
         btnCantLibros.Margin = New Padding(3, 4, 3, 4)
         btnCantLibros.Name = "btnCantLibros"
         btnCantLibros.Size = New Size(187, 107)
@@ -57,11 +58,22 @@ Partial Class frmPrincipal
         lblCantLibros.TabIndex = 2
         lblCantLibros.Text = "Label1"
         ' 
+        ' btnLibros
+        ' 
+        btnLibros.Location = New Point(318, 405)
+        btnLibros.Margin = New Padding(3, 4, 3, 4)
+        btnLibros.Name = "btnLibros"
+        btnLibros.Size = New Size(187, 107)
+        btnLibros.TabIndex = 3
+        btnLibros.Text = "LIBROS"
+        btnLibros.UseVisualStyleBackColor = True
+        ' 
         ' frmPrincipal
         ' 
         AutoScaleDimensions = New SizeF(8F, 20F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(914, 600)
+        Controls.Add(btnLibros)
         Controls.Add(lblCantLibros)
         Controls.Add(btnCantLibros)
         Controls.Add(btnProbarConexion)
@@ -75,5 +87,6 @@ Partial Class frmPrincipal
     Friend WithEvents btnProbarConexion As Button
     Friend WithEvents btnCantLibros As Button
     Friend WithEvents lblCantLibros As Label
+    Friend WithEvents btnLibros As Button
 
 End Class

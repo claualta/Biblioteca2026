@@ -50,4 +50,10 @@ Public Class frmPrincipal
             MessageBox.Show("ERROR: " & ex.Message)
         End Try
     End Sub
+
+    Private Sub btnLibros_Click(sender As Object, e As EventArgs) Handles btnLibros.Click
+        'llamo al form libros
+        frmLibros.Show()
+
+    End Sub
 End Class
