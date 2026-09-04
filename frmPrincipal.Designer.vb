@@ -26,6 +26,7 @@ Partial Class frmPrincipal
         btnCantLibros = New Button()
         lblCantLibros = New Label()
         btnLibros = New Button()
+        btnEditoriales = New Button()
         SuspendLayout()
         ' 
         ' btnProbarConexion
@@ -68,11 +69,22 @@ Partial Class frmPrincipal
         btnLibros.Text = "LIBROS"
         btnLibros.UseVisualStyleBackColor = True
         ' 
+        ' btnEditoriales
+        ' 
+        btnEditoriales.Location = New Point(613, 93)
+        btnEditoriales.Margin = New Padding(3, 4, 3, 4)
+        btnEditoriales.Name = "btnEditoriales"
+        btnEditoriales.Size = New Size(187, 107)
+        btnEditoriales.TabIndex = 4
+        btnEditoriales.Text = "EDITORIALES"
+        btnEditoriales.UseVisualStyleBackColor = True
+        ' 
         ' frmPrincipal
         ' 
         AutoScaleDimensions = New SizeF(8F, 20F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(914, 600)
+        Controls.Add(btnEditoriales)
         Controls.Add(btnLibros)
         Controls.Add(lblCantLibros)
         Controls.Add(btnCantLibros)
@@ -88,5 +100,6 @@ Partial Class frmPrincipal
     Friend WithEvents btnCantLibros As Button
     Friend WithEvents lblCantLibros As Label
     Friend WithEvents btnLibros As Button
+    Friend WithEvents btnEditoriales As Button
 
 End Class

@@ -56,4 +56,10 @@ Public Class frmPrincipal
         frmLibros.Show()
 
     End Sub
+
+    Private Sub btnEditoriales_Click(sender As Object, e As EventArgs) Handles btnEditoriales.Click
+        'llamo al form editoriales
+        frmEditoriales.Show()
+
+    End Sub
 End Class
