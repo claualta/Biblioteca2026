@@ -189,4 +189,19 @@ Public Class frmLibros
             MessageBox.Show("Error al modificar libro: " & ex.Message)
         End Try
     End Sub
+
+    Private Sub btnAutoresTemas_Click(sender As Object, e As EventArgs) Handles btnAutoresTemas.Click
+        If txtIdLibro.Text = "" Then
+            MessageBox.Show("Seleccione un libro.")
+            Exit Sub
+        End If
+
+        'seleccione un libro paso los valores al form
+        formLibrosAutorTema.idLibroSelec = CInt(txtIdLibro.Text)
+        formLibrosAutorTema.TituloLibroSelec = txtTitulo.Text.ToString
+
+        'llamo al form
+        formLibrosAutorTema.ShowDialog()
+
+    End Sub
 End Class
