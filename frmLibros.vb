@@ -92,6 +92,11 @@ Public Class frmLibros
         CargarGrilla()
         'cargo combo editorial
         CargarComboEditoriales()
+
+        'inhabilito el boton eliminar si el usuario no es ADMIN
+        If Sesion.rolUsuario <> "ADMIN" Then
+            btnEliminar.Enabled = False
+        End If
     End Sub
 
     Private Sub btnBuscar_Click(sender As Object, e As EventArgs) Handles btnBuscar.Click

@@ -62,4 +62,33 @@ Public Class frmPrincipal
         frmEditoriales.Show()
 
     End Sub
+
+    Private Sub btnUsuarios_Click(sender As Object, e As EventArgs) Handles btnUsuarios.Click
+        frmUsuarios.ShowDialog()
+
+    End Sub
+
+    Private Sub frmPrincipal_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        lblUsuario.Text = Sesion.NombreCompleto + " - " + Sesion.rolUsuario
+
+        If Sesion.rolUsuario = "ADMIN" Then
+            btnUsuarios.Visible = True
+        End If
+    End Sub
+
+    Private Sub btnCerrarSesion_Click(sender As Object, e As EventArgs) Handles btnCerrarSesion.Click
+        'cierro sesion y vuelvo al login
+        Sesion.CerrarSesion()
+        frmLogin.Show()
+        Me.Close()
+    End Sub
+
+    Private Sub btnSalir_Click(sender As Object, e As EventArgs) Handles btnSalir.Click
+        'cierro la aplicacion
+        Dim result As DialogResult = MessageBox.Show("¿Está seguro que desea salir de la aplicación?", "Confirmar salida", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+        If result = DialogResult.Yes Then
+            Application.Exit()
+        End If
+
+    End Sub
 End Class

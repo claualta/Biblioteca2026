@@ -27,6 +27,10 @@ Partial Class frmPrincipal
         lblCantLibros = New Label()
         btnLibros = New Button()
         btnEditoriales = New Button()
+        btnUsuarios = New Button()
+        lblUsuario = New Label()
+        btnCerrarSesion = New Button()
+        btnSalir = New Button()
         SuspendLayout()
         ' 
         ' btnProbarConexion
@@ -53,7 +57,7 @@ Partial Class frmPrincipal
         ' 
         lblCantLibros.AutoSize = True
         lblCantLibros.Font = New Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        lblCantLibros.Location = New Point(671, 244)
+        lblCantLibros.Location = New Point(660, 279)
         lblCantLibros.Name = "lblCantLibros"
         lblCantLibros.Size = New Size(88, 32)
         lblCantLibros.TabIndex = 2
@@ -79,11 +83,57 @@ Partial Class frmPrincipal
         btnEditoriales.Text = "EDITORIALES"
         btnEditoriales.UseVisualStyleBackColor = True
         ' 
+        ' btnUsuarios
+        ' 
+        btnUsuarios.Location = New Point(61, 93)
+        btnUsuarios.Margin = New Padding(3, 4, 3, 4)
+        btnUsuarios.Name = "btnUsuarios"
+        btnUsuarios.Size = New Size(187, 107)
+        btnUsuarios.TabIndex = 5
+        btnUsuarios.Text = "USUARIOS"
+        btnUsuarios.UseVisualStyleBackColor = True
+        btnUsuarios.Visible = False
+        ' 
+        ' lblUsuario
+        ' 
+        lblUsuario.AutoSize = True
+        lblUsuario.Font = New Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        lblUsuario.Location = New Point(94, 9)
+        lblUsuario.Name = "lblUsuario"
+        lblUsuario.Size = New Size(131, 32)
+        lblUsuario.TabIndex = 6
+        lblUsuario.Text = "lblUsuario"
+        ' 
+        ' btnCerrarSesion
+        ' 
+        btnCerrarSesion.Location = New Point(675, 22)
+        btnCerrarSesion.Margin = New Padding(3, 4, 3, 4)
+        btnCerrarSesion.Name = "btnCerrarSesion"
+        btnCerrarSesion.Size = New Size(206, 32)
+        btnCerrarSesion.TabIndex = 7
+        btnCerrarSesion.Text = "CERRAR SESION"
+        btnCerrarSesion.UseVisualStyleBackColor = True
+        ' 
+        ' btnSalir
+        ' 
+        btnSalir.Location = New Point(552, 22)
+        btnSalir.Margin = New Padding(3, 4, 3, 4)
+        btnSalir.Name = "btnSalir"
+        btnSalir.Size = New Size(117, 32)
+        btnSalir.TabIndex = 8
+        btnSalir.Text = "SALIR"
+        btnSalir.UseVisualStyleBackColor = True
+        ' 
         ' frmPrincipal
         ' 
         AutoScaleDimensions = New SizeF(8F, 20F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(914, 600)
+        ControlBox = False
+        Controls.Add(btnSalir)
+        Controls.Add(btnCerrarSesion)
+        Controls.Add(lblUsuario)
+        Controls.Add(btnUsuarios)
         Controls.Add(btnEditoriales)
         Controls.Add(btnLibros)
         Controls.Add(lblCantLibros)
@@ -101,5 +151,9 @@ Partial Class frmPrincipal
     Friend WithEvents lblCantLibros As Label
     Friend WithEvents btnLibros As Button
     Friend WithEvents btnEditoriales As Button
+    Friend WithEvents btnUsuarios As Button
+    Friend WithEvents lblUsuario As Label
+    Friend WithEvents btnCerrarSesion As Button
+    Friend WithEvents btnSalir As Button
 
 End Class
