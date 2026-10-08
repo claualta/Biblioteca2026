@@ -1,6 +1,53 @@
 ﻿Imports MySqlConnector
+Imports System.IO   'libreria para trabajar con archivos
+Imports System.Drawing.Imaging 'libreria para trabajar con imagenes
 
 Public Class frmLibros
+
+    'funcion para convertir una imagen en un arreglo de bytes
+    Private Function ImagenaBytes(img As Image) As Byte()
+        'valido si la imagen es nula no hago
+        If img Is Nothing Then Return Nothing
+
+        'memory stream es un flujo de datos en memoria
+        Using memoria As New MemoryStream()
+            ' guardo la imagen en el memory stream
+            img.Save(memoria, ImageFormat.Jpeg)
+            'retorno la imagen en bytes
+            Return memoria.ToArray()
+        End Using
+    End Function
+
+    Sub CargarPortada(idlibro As Integer)
+        'recupero la imagen desde la BD y la pego en el picturebox
+        Try
+            Using cn As New MySqlConnection(CADENA)
+                cn.Open()
+                Dim sql As String = "SELECT portada FROM libro WHERE clavelibro=@idlibro;"
+
+                Using cmd As New MySqlCommand(sql, cn)
+                    cmd.Parameters.AddWithValue("@idlibro", CInt(txtIdLibro.Text))
+                    Dim valor = cmd.ExecuteScalar
+                    'valido que el valor no sea null
+                    If valor Is Nothing OrElse valor Is DBNull.Value Then
+                        picPortada.Image = Nothing
+                        Exit Sub
+                    End If
+                    'si tiene la portada convierto y cargo al pic
+                    Dim datos() As Byte = DirectCast(valor, Byte())
+                    'vuelvo a usar memory stream para la conversion temporal en memoria
+                    Using memoria As New MemoryStream(datos)
+                        Using temporal As Image = Image.FromStream(memoria)
+                            picPortada.Image = New Bitmap(temporal)
+                        End Using
+                    End Using
+                End Using
+
+            End Using
+        Catch ex As Exception
+            MessageBox.Show("ERROR" + ex.Message)
+        End Try
+    End Sub
 
     Sub CargarGrilla(Optional filtro As String = "")
         'creo subrutina para cargar grilla
@@ -84,6 +131,7 @@ Public Class frmLibros
         txtIdioma.Clear()
         txtFormato.Clear()
         nudEdicion.Value = 0
+        picPortada.Image = Nothing
         txtFiltro.Focus()
     End Sub
 
@@ -160,6 +208,8 @@ Public Class frmLibros
         ' Para editar correctamente conviene que la consulta del DataGridView
         ' también incluya claveeditorial, aunque la columna se oculte.
         cboEditorial.SelectedValue = CInt(fila.Cells("claveeditorial").Value)
+        'traigo imagen de la portada
+        CargarPortada(CInt(txtIdLibro.Text))
     End Sub
 
     Private Sub btnModificar_Click(sender As Object, e As EventArgs) Handles btnModificar.Click
@@ -207,6 +257,66 @@ Public Class frmLibros
 
         'llamo al form
         formLibrosAutorTema.ShowDialog()
+
+    End Sub
+
+    Private Sub btnBuscarImagen_Click(sender As Object, e As EventArgs) Handles btnBuscarImagen.Click
+        'llamamos al opendialog para buscar imagenes
+        Using dlg As New OpenFileDialog()
+            'limitamos la busqueda
+            dlg.Filter = "Imgenes|*.jpg;*.jpeg;*.png;*.bmp"
+
+            'creo una copia temporal de la imagen en memoria
+            'luego la paso al picture box
+            If dlg.ShowDialog() = DialogResult.OK Then
+                Using temporal As Image = Image.FromFile(dlg.FileName)
+                    picPortada.Image = New Bitmap(temporal)
+                End Using
+            End If
+        End Using
+    End Sub
+
+    Private Sub btnGuardarImagen_Click(sender As Object, e As EventArgs) Handles btnGuardarImagen.Click
+        'valido libro
+        If txtIdLibro.Text = "" Then
+            Exit Sub
+        End If
+
+        'conversion de la imagen usando la funcion
+        Dim datos() As Byte = ImagenaBytes(picPortada.Image)
+
+        'valido el tamaño de la imagen
+        If datos.Length > 1000000 Then
+            MessageBox.Show("la imagen no puede superar 1 MB")
+            Exit Sub
+        End If
+
+        Try
+            Using cn As New MySqlConnection(CADENA)
+                cn.Open()
+                'actualizo el registro del libro seleccionado
+                Dim sql = "UPDATE libro SET portada=@portada WHERE clavelibro=@idlibro;"
+
+                Using cmd As New MySqlCommand(sql, cn)
+                    'valido la imagen
+                    If datos Is Nothing Then
+                        cmd.Parameters.AddWithValue("@portada", DBNull.Value)
+                    Else
+                        'si tengo una imagen convertida a bytes
+                        cmd.Parameters.AddWithValue("@portada", MySqlDbType.LongBlob).Value = datos
+                    End If
+                    cmd.Parameters.AddWithValue("@idlibro", CInt(txtIdLibro.Text))
+                    cmd.ExecuteNonQuery()
+                End Using
+            End Using
+            MessageBox.Show("portada guardada")
+        Catch ex As Exception
+            MessageBox.Show("Error" + ex.Message)
+        End Try
+
+    End Sub
+
+    Private Sub btnQuitarImagen_Click(sender As Object, e As EventArgs) Handles btnQuitarImagen.Click
 
     End Sub
 End Class

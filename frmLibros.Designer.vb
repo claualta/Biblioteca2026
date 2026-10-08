@@ -43,8 +43,14 @@ Partial Class frmLibros
         Label6 = New Label()
         Label7 = New Label()
         btnAutoresTemas = New Button()
+        picPortada = New PictureBox()
+        OpenFileDialog1 = New OpenFileDialog()
+        btnBuscarImagen = New Button()
+        btnGuardarImagen = New Button()
+        btnQuitarImagen = New Button()
         CType(dgvLibros, ComponentModel.ISupportInitialize).BeginInit()
         CType(nudEdicion, ComponentModel.ISupportInitialize).BeginInit()
+        CType(picPortada, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
         ' txtFiltro
@@ -90,7 +96,7 @@ Partial Class frmLibros
         dgvLibros.ReadOnly = True
         dgvLibros.RowHeadersWidth = 51
         dgvLibros.SelectionMode = DataGridViewSelectionMode.FullRowSelect
-        dgvLibros.Size = New Size(990, 335)
+        dgvLibros.Size = New Size(822, 335)
         dgvLibros.TabIndex = 4
         ' 
         ' txtIdLibro
@@ -238,11 +244,59 @@ Partial Class frmLibros
         btnAutoresTemas.Text = "AUTORES Y TEMAS"
         btnAutoresTemas.UseVisualStyleBackColor = True
         ' 
+        ' picPortada
+        ' 
+        picPortada.BackColor = SystemColors.ActiveCaption
+        picPortada.Location = New Point(844, 83)
+        picPortada.Name = "picPortada"
+        picPortada.Size = New Size(332, 335)
+        picPortada.SizeMode = PictureBoxSizeMode.Zoom
+        picPortada.TabIndex = 21
+        picPortada.TabStop = False
+        ' 
+        ' OpenFileDialog1
+        ' 
+        OpenFileDialog1.FileName = "OpenFileDialog1"
+        ' 
+        ' btnBuscarImagen
+        ' 
+        btnBuscarImagen.Location = New Point(844, 435)
+        btnBuscarImagen.Margin = New Padding(3, 4, 3, 4)
+        btnBuscarImagen.Name = "btnBuscarImagen"
+        btnBuscarImagen.Size = New Size(332, 32)
+        btnBuscarImagen.TabIndex = 22
+        btnBuscarImagen.Text = "BUSCAR PORTADA"
+        btnBuscarImagen.UseVisualStyleBackColor = True
+        ' 
+        ' btnGuardarImagen
+        ' 
+        btnGuardarImagen.Location = New Point(844, 478)
+        btnGuardarImagen.Margin = New Padding(3, 4, 3, 4)
+        btnGuardarImagen.Name = "btnGuardarImagen"
+        btnGuardarImagen.Size = New Size(332, 32)
+        btnGuardarImagen.TabIndex = 23
+        btnGuardarImagen.Text = "GUARDAR PORTADA"
+        btnGuardarImagen.UseVisualStyleBackColor = True
+        ' 
+        ' btnQuitarImagen
+        ' 
+        btnQuitarImagen.Location = New Point(844, 518)
+        btnQuitarImagen.Margin = New Padding(3, 4, 3, 4)
+        btnQuitarImagen.Name = "btnQuitarImagen"
+        btnQuitarImagen.Size = New Size(332, 32)
+        btnQuitarImagen.TabIndex = 24
+        btnQuitarImagen.Text = "QUITAR PORTADA"
+        btnQuitarImagen.UseVisualStyleBackColor = True
+        ' 
         ' frmLibros
         ' 
         AutoScaleDimensions = New SizeF(8F, 20F)
         AutoScaleMode = AutoScaleMode.Font
-        ClientSize = New Size(1034, 693)
+        ClientSize = New Size(1198, 693)
+        Controls.Add(btnQuitarImagen)
+        Controls.Add(btnGuardarImagen)
+        Controls.Add(btnBuscarImagen)
+        Controls.Add(picPortada)
         Controls.Add(btnAutoresTemas)
         Controls.Add(Label7)
         Controls.Add(Label6)
@@ -269,6 +323,7 @@ Partial Class frmLibros
         Text = "Libros"
         CType(dgvLibros, ComponentModel.ISupportInitialize).EndInit()
         CType(nudEdicion, ComponentModel.ISupportInitialize).EndInit()
+        CType(picPortada, ComponentModel.ISupportInitialize).EndInit()
         ResumeLayout(False)
         PerformLayout()
     End Sub
@@ -294,4 +349,9 @@ Partial Class frmLibros
     Friend WithEvents Label6 As Label
     Friend WithEvents Label7 As Label
     Friend WithEvents btnAutoresTemas As Button
+    Friend WithEvents picPortada As PictureBox
+    Friend WithEvents OpenFileDialog1 As OpenFileDialog
+    Friend WithEvents btnBuscarImagen As Button
+    Friend WithEvents btnGuardarImagen As Button
+    Friend WithEvents btnQuitarImagen As Button
 End Class
