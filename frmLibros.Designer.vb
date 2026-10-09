@@ -22,6 +22,7 @@ Partial Class frmLibros
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmLibros))
         txtFiltro = New TextBox()
         Label1 = New Label()
         btnBuscar = New Button()
@@ -48,6 +49,10 @@ Partial Class frmLibros
         btnBuscarImagen = New Button()
         btnGuardarImagen = New Button()
         btnQuitarImagen = New Button()
+        btnFicha = New Button()
+        PrintDialog1 = New PrintDialog()
+        PrintPreviewDialog1 = New PrintPreviewDialog()
+        PrintDocument1 = New Printing.PrintDocument()
         CType(dgvLibros, ComponentModel.ISupportInitialize).BeginInit()
         CType(nudEdicion, ComponentModel.ISupportInitialize).BeginInit()
         CType(picPortada, ComponentModel.ISupportInitialize).BeginInit()
@@ -288,11 +293,39 @@ Partial Class frmLibros
         btnQuitarImagen.Text = "QUITAR PORTADA"
         btnQuitarImagen.UseVisualStyleBackColor = True
         ' 
+        ' btnFicha
+        ' 
+        btnFicha.Location = New Point(883, 588)
+        btnFicha.Margin = New Padding(3, 4, 3, 4)
+        btnFicha.Name = "btnFicha"
+        btnFicha.Size = New Size(223, 32)
+        btnFicha.TabIndex = 25
+        btnFicha.Text = "FICHA"
+        btnFicha.UseVisualStyleBackColor = True
+        ' 
+        ' PrintDialog1
+        ' 
+        PrintDialog1.UseEXDialog = True
+        ' 
+        ' PrintPreviewDialog1
+        ' 
+        PrintPreviewDialog1.AutoScrollMargin = New Size(0, 0)
+        PrintPreviewDialog1.AutoScrollMinSize = New Size(0, 0)
+        PrintPreviewDialog1.ClientSize = New Size(400, 300)
+        PrintPreviewDialog1.Enabled = True
+        PrintPreviewDialog1.Icon = CType(resources.GetObject("PrintPreviewDialog1.Icon"), Icon)
+        PrintPreviewDialog1.Name = "PrintPreviewDialog1"
+        PrintPreviewDialog1.Visible = False
+        ' 
+        ' PrintDocument1
+        ' 
+        ' 
         ' frmLibros
         ' 
         AutoScaleDimensions = New SizeF(8F, 20F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(1198, 693)
+        Controls.Add(btnFicha)
         Controls.Add(btnQuitarImagen)
         Controls.Add(btnGuardarImagen)
         Controls.Add(btnBuscarImagen)
@@ -354,4 +387,8 @@ Partial Class frmLibros
     Friend WithEvents btnBuscarImagen As Button
     Friend WithEvents btnGuardarImagen As Button
     Friend WithEvents btnQuitarImagen As Button
+    Friend WithEvents btnFicha As Button
+    Friend WithEvents PrintDialog1 As PrintDialog
+    Friend WithEvents PrintPreviewDialog1 As PrintPreviewDialog
+    Friend WithEvents PrintDocument1 As Printing.PrintDocument
 End Class

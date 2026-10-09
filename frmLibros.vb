@@ -319,4 +319,61 @@ Public Class frmLibros
     Private Sub btnQuitarImagen_Click(sender As Object, e As EventArgs) Handles btnQuitarImagen.Click
 
     End Sub
+
+    Private Sub btnFicha_Click(sender As Object, e As EventArgs) Handles btnFicha.Click
+        'imprimimos el reporte
+
+        'si quiero ver la vista previa
+        PrintPreviewDialog1.Document = PrintDocument1
+        'configurar estado de la ventana
+        PrintPreviewDialog1.WindowState = FormWindowState.Maximized
+        PrintPreviewDialog1.Show()
+
+        'para seleccionar impresora
+        'PrintDialog1.ShowDialog()
+        'PrintDocument1.PrinterSettings = PrintDialog1.PrinterSettings
+        'imprimir directamente
+        'PrintDocument1.Print()
+
+    End Sub
+
+    Private Sub PrintDocument1_PrintPage(sender As Object, e As Printing.PrintPageEventArgs) Handles PrintDocument1.PrintPage
+        ' usamos libreria Drawing
+
+        'definimos fuentes
+        Dim FuenteTitulo As New Font("Arial", 18, FontStyle.Bold)
+        Dim FuenteNormal As New Font("Arial", 12, FontStyle.Regular)
+        'color de impresion
+        Dim pincel As New SolidBrush(Color.Black)
+
+        'consultamos margenes de hoja
+        Dim x As Integer = e.MarginBounds.Left
+        Dim x2 As Integer = e.MarginBounds.Right
+        Dim y As Integer = e.MarginBounds.Top
+        Dim y2 As Integer = e.MarginBounds.Bottom
+
+        'imprimimos
+        e.Graphics.DrawString("Margen izquierdo: " & x.ToString, FuenteNormal, pincel, 100, 50)
+        e.Graphics.DrawString("Margen derecho: " & x2.ToString, FuenteNormal, Brushes.Blue, 100, 80)
+        e.Graphics.DrawString("Margen superior: " & y.ToString, FuenteNormal, Brushes.Red, x2 - 100, y2 - 200)
+        e.Graphics.DrawString("Margen inferior: " & y2.ToString, FuenteNormal, Brushes.Green, x2 - 100, y2 - 100)
+
+        'imprimimos un rectangulo
+        e.Graphics.DrawRectangle(Pens.Black, x, y, x2 - x, y2 - y)
+
+        'imprimir la portada
+        'valido imagen
+        If picPortada.Image IsNot Nothing Then
+            e.Graphics.DrawImage(picPortada.Image, 300, 250, 150, 200)
+        End If
+
+        'imprimir lineas
+        e.Graphics.DrawLine(Pens.Black, 200, 300, 500, 300)
+        e.Graphics.DrawLine(Pens.Black, 200, 500, 500, 500)
+        e.Graphics.DrawLine(Pens.Red, 200, 300, 500, 500)
+
+        'imprimir un circulo
+        e.Graphics.DrawEllipse(Pens.Blue, 300, 600, 200, 200)
+
+    End Sub
 End Class
