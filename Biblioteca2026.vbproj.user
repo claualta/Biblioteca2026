@@ -4,6 +4,9 @@
     <Compile Update="formLibrosAutorTema.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="FormTablero.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="frmEditoriales.vb">
       <SubType>Form</SubType>
     </Compile>
