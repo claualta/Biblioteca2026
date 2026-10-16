@@ -43,6 +43,11 @@ packages/
 *.user, *.suo
 ```
 
+6. Libreria para Graficos Charts *ScottPlot*
+	- Instalar paquete NuGet ScottPlot 5 o superior para WinForms
+
+https://scottplot.net/quickstart/winforms/
+
 
 
 
