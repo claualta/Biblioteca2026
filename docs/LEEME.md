@@ -48,7 +48,22 @@ packages/
 
 https://scottplot.net/quickstart/winforms/
 
+## Crear usuario con privilegios restringidos
+** paso 1
+CREATE USER 'nombre-usuario'@'localhost'
+IDENTIFIED BY 'clave';
 
-
+** paso 2
+GRANT
+    SELECT,
+    INSERT,
+    UPDATE,
+    EXECUTE,
+    SHOW VIEW,
+    INDEX,
+    REFERENCES,
+    TRIGGER
+ON base-datos.*
+TO 'nombre-usuario'@'localhost';
 
 
