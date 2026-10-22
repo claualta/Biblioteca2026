@@ -63,6 +63,7 @@ WHERE usr.nombreusuario = @usuario AND usr.activo=TRUE;"
     End Sub
 
     Private Sub frmLogin_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
+        'obtengo datos de conexion a BD
+        ObtenerDatosConexion()
     End Sub
 End Class

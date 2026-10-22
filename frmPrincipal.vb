@@ -69,6 +69,8 @@ Public Class frmPrincipal
     End Sub
 
     Private Sub frmPrincipal_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        'ObtenerDatosConexion()
+
         lblUsuario.Text = Sesion.NombreCompleto + " - " + Sesion.rolUsuario
 
         If Sesion.rolUsuario = "ADMIN" Then

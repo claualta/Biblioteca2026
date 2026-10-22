@@ -26,3 +26,9 @@ Ver `../database`
 	. Preparar entorno de desarrollo
 	. Primer proyecto
 	. Conexion a BD
+	
+## Empaquetado para distribucion
+dotnet publish -c Release -r win-x64 --self-contained true -o .\publicacion
+
+## Inno setup
+'https://jrsoftware.org/isinfo.php'
